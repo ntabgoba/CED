@@ -1,0 +1,27 @@
+# Ignore csv files,since available on jaea website
+*.csv
+rsconnect/
+
+# ignore folder of questions
+*ignore data
+/csv/
+*.pdf
+
+# ignore Mac Finder's metadata file
+.DS_Store
+
+# History files
+.Rhistory
+.Rapp.history
+
+# Session Data files
+.RData
+
+# knitr and R markdown default cache directories
+/*_cache/
+/cache/
+
+# Temporary files created by R markdown
+*.utf8.md
+*.knit.md
+
