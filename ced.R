@@ -11,6 +11,12 @@ library(ggplot2)
 # http://emdb.jaea.go.jp/emdb/en/portals/b133/
 air_2011 <- read.csv(file = "10200000002_07.csv", header = TRUE)
 dim(air_2011)
+View(air_2011)
+names(air_2011) <- c("gridcode","pref","city","gridCenterNorthlat","gridCenterEastlng","gridCenterNorthlatDec",
+                     "gridCenterEastlngDec","daichi_distance","no_samples","AvgAirDoseRate",
+                     "NE_nLat","NE_eLong","NW_nLat","NW_eLong",
+                     "SW_nLat","SW_eLong","SE_nLat","SE_eLong")
+
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
 air_2012 <- read.csv(file = "10200000007_07.csv", header = TRUE)
@@ -31,4 +37,5 @@ dim(air_2014)
 # http://emdb.jaea.go.jp/emdb/en/portals/b147/
 air_2015 <- read.csv(file = "./MinSci/10214700026_00_201503/10214700026_00_20150329.csv", header = TRUE)
 dim(air_2015)
+View(air_2015)
 
