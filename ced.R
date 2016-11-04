@@ -25,7 +25,7 @@ air_2012 <- read.csv(file = "10200000007_07.csv", header = TRUE)
 names(air_2012) <- c("gridcode","sdate","edate","pref","city","no_samples","AvgAirDoseRate",
                      "NE_nLat","NE_eLong","NW_nLat","NW_eLong",
                      "SW_nLat","SW_eLong","SE_nLat","SE_eLong")
-
+write.csv(air_2012,file = "air_2012.csv")
 # Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (13th Vehicle-borne Survey) ( From March 2013 to April 2013 )
 air_2013 <- read.csv(file = "10200000014_07.csv", header = TRUE)
