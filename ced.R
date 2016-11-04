@@ -12,8 +12,7 @@ library(ggplot2)
 air_2011 <- read.csv(file = "10200000002_07.csv", header = TRUE)
 dim(air_2011)
 View(air_2011)
-names(air_2011) <- c("gridcode","pref","city","gridCenterNorthlat","gridCenterEastlng","gridCenterNorthlatDec",
-                     "gridCenterEastlngDec","daichi_distance","no_samples","AvgAirDoseRate",
+names(air_2011) <- c("gridcode","sdate","edate","pref","city","no_samples","AvgAirDoseRate",
                      "NE_nLat","NE_eLong","NW_nLat","NW_eLong",
                      "SW_nLat","SW_eLong","SE_nLat","SE_eLong")
 
