@@ -15,6 +15,9 @@ View(air_2011)
 names(air_2011) <- c("gridcode","sdate","edate","pref","city","no_samples","AvgAirDoseRate",
                      "NE_nLat","NE_eLong","NW_nLat","NW_eLong",
                      "SW_nLat","SW_eLong","SE_nLat","SE_eLong")
+#Formula for CED
+Di(t) = Di(0)[0.69.exp{-(In2/T134).t} + 0.31.exp{-In2/T137}.t]
+
 
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
