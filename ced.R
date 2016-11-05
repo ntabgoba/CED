@@ -23,9 +23,9 @@ air_2011$edate <- as.Date(air_2011$edate,"%Y-%m-%d")
 air_2011$pref <- as.character(air_2011$pref)
 air_2011$city <- as.character(air_2011$city)
 air_2011$gridcode <- as.character(air_2011$gridcode)
-str(air_2011)
-?cut
-#Formula for CED
+#make cuts of Annual External Air Dose
+air_2011$AnnualDoseRange <- cut(air_2011$AnnualExtDose, c(0,1,5,10,20,50,100,250,850))
+
 
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
