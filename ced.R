@@ -18,10 +18,14 @@ names(air_2011) <- c("gridcode","sdate","edate","pref","city","no_samples","AvgA
 air_2011 <- read.csv("air_2011.csv")
 
 air_2011$AnnualExtDose <- (air_2011$AvgAirDoseRate - 0.04)*(16 + 8*0.4)*365/1000
-
+air_2011$sdate <- as.Date(air_2011$sdate,"%Y-%m-%d")
+air_2011$edate <- as.Date(air_2011$edate,"%Y-%m-%d")
+air_2011$pref <- as.character(air_2011$pref)
+air_2011$city <- as.character(air_2011$city)
+air_2011$gridcode <- as.character(air_2011$gridcode)
+str(air_2011)
+?cut
 #Formula for CED
-Di(t) = Di(0)[0.69.exp{-(In2/T134).t} + 0.31.exp{-log2/T137}.t]
-
 
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
