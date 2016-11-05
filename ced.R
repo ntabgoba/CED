@@ -29,6 +29,14 @@ air_2011$AnnualDoseRange <- cut(air_2011$AnnualExtDose, c(0,1,5,10,20,50,100,250
 areakm2 <- as.data.frame(table(air_2011$AnnualDoseRange))
 areakm2$Var1 <- areakm2$AnnualDoseRange
 
+
+popAir_plot <- leaflet() %>%
+        addTiles()%>%
+        addCircles(data = poAir,lng = ~long, lat = ~lat,color = ~iro(poAir$pop_quants),radius = ~(poAir$pop_quants))%>%
+        addRectangles(data = poAir,lng1 = ~SW_eLong, lat1 = ~SW_nLat,
+                      lng2 = ~NE_eLong, lat2 = ~NE_nLat,
+                      color = ~iro2(poAir$dose_quants))%>%
+ 
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
 air_2012 <- read.csv(file = "10200000007_07.csv", header = TRUE)
