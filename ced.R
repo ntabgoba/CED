@@ -36,7 +36,22 @@ popAir_plot <- leaflet() %>%
         addRectangles(data = poAir,lng1 = ~SW_eLong, lat1 = ~SW_nLat,
                       lng2 = ~NE_eLong, lat2 = ~NE_nLat,
                       color = ~iro2(poAir$dose_quants))%>%
- 
+        addCircles(lat = 37.4211, lng = 141.0328, radius = 20000, color = "Red", fill = FALSE,options )%>%
+        addCircles(lat = 37.4211, lng = 141.0328, radius = 80000, color = "Yellow", fill = FALSE )%>%
+        addPolylines(data = linedf, lng = ~long, lat = ~lat)%>%
+        addLegend("bottomright", pal = iro, values = popAir$pop_quant,
+                  title = "Population",
+                  labFormat = labelFormat(prefix = "pple "),
+                  opacity = 1)%>%
+        addLegend("topright", pal = iro2, values = poAir$dose_quant,
+                  title = "Radiations",
+                  labFormat = labelFormat(prefix = "µSv/h "),
+                  opacity = 1)%>%
+        addPopups(lat = 37.4211, lng = 141.0328, popup = "Daiichi")%>%
+        addPopups(lat = 37.43182, lng = 140.8058, popup = "20km from Daiichi")%>%
+        addPopups(lat = 37.48834, lng=140.1285, popup = "80km from Daiichi")
+
+popAir_plot
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
 air_2012 <- read.csv(file = "10200000007_07.csv", header = TRUE)
