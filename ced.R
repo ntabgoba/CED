@@ -25,7 +25,9 @@ air_2011$city <- as.character(air_2011$city)
 air_2011$gridcode <- as.character(air_2011$gridcode)
 #make cuts of Annual External Air Dose
 air_2011$AnnualDoseRange <- cut(air_2011$AnnualExtDose, c(0,1,5,10,20,50,100,250,850))
-
+#calculate area
+areakm2 <- as.data.frame(table(air_2011$AnnualDoseRange))
+areakm2$Var1 <- areakm2$AnnualDoseRange
 
 #Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (6th Vehicle-borne Survey) ( From Feburary 2012 to March 2012 )
