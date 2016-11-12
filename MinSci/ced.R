@@ -2,7 +2,7 @@
 #2 Establish the region
 #3 Calculate the CED
 #4 Make percentages of Region, Population and CED
-
+library(leaflet)
 library(dplyr)
 library(ggplot2)
 #TEPCO
@@ -11,7 +11,7 @@ library(ggplot2)
 # http://emdb.jaea.go.jp/emdb/en/portals/b133/
 air_2011 <- read.csv(file = "10200000002_07.csv", header = TRUE)
 dim(air_2011)
-View(air_2011)
+
 names(air_2011) <- c("gridcode","sdate","edate","pref","city","no_samples","AvgAirDoseRate",
                      "NE_nLat","NE_eLong","NW_nLat","NW_eLong",
                      "SW_nLat","SW_eLong","SE_nLat","SE_eLong")
@@ -50,7 +50,34 @@ air_2012 <- read.csv(file = "10200000007_07.csv", header = TRUE)
 names(air_2012) <- c("gridcode","sdate","edate","pref","city","no_samples","AvgAirDoseRate",
                      "NE_nLat","NE_eLong","NW_nLat","NW_eLong",
                      "SW_nLat","SW_eLong","SE_nLat","SE_eLong")
-write.csv(air_2012,file = "air_2012.csv")
+air_2012$AnnualExtDose <- (air_2012$AvgAirDoseRate - 0.04)*(16 + 8*0.4)*365/1000
+air_2012$sdate <- as.Date(air_2012$sdate,"%Y-%m-%d")
+air_2012$edate <- as.Date(air_2012$edate,"%Y-%m-%d")
+air_2012$pref <- as.character(air_2012$pref)
+air_2012$city <- as.character(air_2012$city)
+air_2012$gridcode <- as.character(air_2012$gridcode)
+#make cuts of Annual External Air Dose
+air_2012$AnnualDoseRange <- cut(air_2012$AnnualExtDose, c(0,1,5,10,20,50,100,250,850))
+#calculate area
+areakm2 <- as.data.frame(table(air_2012$AnnualDoseRange))
+areakm2$Var1 <- areakm2$AnnualDoseRange
+
+iro <- colorFactor(
+        palette = "Blues",
+        domain = air_2012$pop_quants
+)
+
+iro2 <- colorFactor(
+        palette = "PuRd",
+        domain = air_2012$AnnualDoseRange
+)
+air_2012_plot <- leaflet() %>%
+        addTiles()%>%
+        addRectangles(data = air_2012,lng1 = ~SW_eLong, lat1 = ~SW_nLat,
+                      lng2 = ~NE_eLong, lat2 = ~NE_nLat,
+                      color = ~iro2(air_2012$AnnualDoseRange))
+air_2012_plot
+
 # Readings of Detailed Monitoring in the Restricted Area and Planned Evacuation Zone 
 # (13th Vehicle-borne Survey) ( From March 2013 to April 2013 )
 air_2013 <- read.csv(file = "10200000014_07.csv", header = TRUE)
